@@ -1,5 +1,6 @@
 import mysql.connector
-from  schema import CREATE_NONEXISTING_DATABASE, PREDICTION_HISTORY_TABLE
+from database.schema import CREATE_NONEXISTING_DATABASE, PREDICTION_HISTORY_TABLE, PREDICTION_HISTORY
+import traceback
 
 class DatabaseManager:
     def __init__(self):
@@ -22,7 +23,7 @@ class DatabaseManager:
         self.__temp_cursor = self.__temp_connection.cursor()
         self.__temp_cursor.execute(CREATE_NONEXISTING_DATABASE)
 
-        self.__temp_connection.commit
+        self.__temp_connection.commit()
         self.__temp_connection.close()
 
         self.__connection = mysql.connector.connect(
@@ -33,6 +34,8 @@ class DatabaseManager:
         )
         
         self.__cursor = self.__connection.cursor()
+
+        self.create_tables()
 
     def create_tables(self)->None:
         queries = [
@@ -53,6 +56,9 @@ class DatabaseManager:
             grs:int,
             predicted_price:float,
     )->None:
+        connection = self.__connection
+        cursor = connection.cursor()
+
         """Menyimpan data prediksi ke tabel prediction_history di database
 
         Args:
@@ -65,7 +71,14 @@ class DatabaseManager:
         """
         query = """
         insert into prediction_history
-        (lb, lt, kt, km, grs, predicted_price)
+        (
+            building_size_m2,
+            land_size_m2,
+            bedroom_count,
+            bathroom_count,
+            garage,
+            predicted_price
+        )
         values (%s, %s, %s, %s, %s, %s)
         """
         
@@ -79,9 +92,31 @@ class DatabaseManager:
         )
 
         try:
-            self.__cursor.execute(query, values)
-            self.__connection.commit()
+            cursor.execute(query, values)
+            connection.commit()
             return True
         except Exception as e:
             print(e)
+            traceback.print_exc()
             return False
+        finally:
+            cursor.close()
+            connection.close()
+
+    def get_prediction_history(self):
+        connection = self.__connection
+        cursor = connection.cursor(dictionary=True)
+
+        try:
+            cursor.execute(PREDICTION_HISTORY)
+
+            result = cursor.fetchall()
+        except Exception as e:
+            print(e)
+            traceback.print_exc()
+            return False
+        finally:
+            cursor.close()
+            connection.close()
+
+        return result

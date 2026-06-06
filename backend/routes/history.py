@@ -1,22 +1,22 @@
 from flask import Blueprint, request, jsonify
 from service.prediction_service import PredictionService
 
-prediction_bp = Blueprint('prediction', __name__)
+history_bp = Blueprint('history', __name__)
 
 service = PredictionService()
 
-@prediction_bp.route('/predict', methods=['POST'])
-def predict():
-    data = request.json
+@history_bp.route('/history', methods=['GET'])
+def get_history():
 
     try:
-        result = service.predict_house(data)
+        result = service.get_history()
 
         return jsonify({
-            'prediction': float(result)
-        })
+            'success': True,
+            'history': result
+        }), 200
     except Exception as e:
         return jsonify({
-            'success': '',
+            'success': False,
             'messages': str(e),
         }), 500
