@@ -10,7 +10,7 @@ export default function ModelPerform() {
     {
       title: "Root Mean Error Squered",
       desc: "metrik  untuk mengukur seberapa jauh prediksi sebuah model meleset dari data aslinya",
-      value: 0.78,
+      value: 3_161_998_043,
     },
   ];
 
