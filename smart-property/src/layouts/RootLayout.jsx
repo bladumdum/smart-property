@@ -5,13 +5,13 @@ export default function RootLayout() {
   const pages = ["Home", "Prediction", "History"];
   return (
     <div className=" min-h-screen flex flex-col">
-      <header className=" bg-bg-secondary h-18 flex items-center">
+      <header className=" sticky top-0 z-50 backdrop-blur-md bg-bg-secondary/70 h-18 flex items-center">
         <div className=" flex justify-between container-center w-full">
           <h1>logo</h1>
           <Navbar />
         </div>
       </header>
-      <main className="container-center flex-1 w-full">
+      <main className="flex-1 w-full">
         <Outlet />
       </main>
     </div>
