@@ -37,6 +37,14 @@ class DatabaseManager:
 
         self.create_tables()
 
+    def get_connection(self):
+        return mysql.connector.connect(
+            host="localhost",
+            user="root",
+            password="",
+            database="house_prediction",
+        )
+
     def create_tables(self)->None:
         queries = [
             PREDICTION_HISTORY_TABLE
@@ -56,7 +64,7 @@ class DatabaseManager:
             grs:int,
             predicted_price:float,
     )->None:
-        connection = self.__connection
+        connection = self.get_connection()
         cursor = connection.cursor()
 
         """Menyimpan data prediksi ke tabel prediction_history di database
