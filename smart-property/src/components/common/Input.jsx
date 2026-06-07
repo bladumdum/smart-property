@@ -1,17 +1,24 @@
-export default function Input({ label, type, value, placeholder, onChange }) {
+export default function Input({
+  label,
+  type,
+  name,
+  value,
+  placeholder,
+  handleChange,
+}) {
   return (
     <>
       <label htmlFor="" className="px-6">
         {label}
       </label>
       <input
-        key={label}
         type={type}
-        name={label}
+        name={name}
         value={value}
-        onChange={onChange}
+        onChange={handleChange}
         className="py-4 px-6 bg-bg-card w-full rounded-sm"
         placeholder={placeholder}
+        required
       />
     </>
   );
