@@ -1,7 +1,7 @@
 from pathlib import Path
 import joblib
 import pandas as pd
-import numpy as np
+
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 MODEL_PATH = BASE_DIR / 'random_forest_model.pkl'
@@ -15,7 +15,7 @@ class HousePredictor:
     def __init__(self)->None:
         self.__model = joblib.load(MODEL_PATH)
 
-    def predict(self, inp_data:pd.DataFrame)->np.ndarray:
+    def predict(self, inp_data:pd.DataFrame)->float:
         """lakukan prediksi
     
         Args:

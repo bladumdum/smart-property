@@ -1,6 +1,7 @@
 from models.predictor import HousePredictor
 from database.db import DatabaseManager
 import pandas as pd
+from entities.house import HouseForm
 
 class PredictionService:
     """Representasi dari logika bisnis prediksi 
@@ -13,23 +14,18 @@ class PredictionService:
         self.__predictor  = predictor or HousePredictor()
         self.__db = db or DatabaseManager()
 
-    def predict_house(self, data)->float:
-        features = pd.DataFrame([{
-        'LB': data['LB'],
-        'LT': data['LT'],
-        'KT': data['KT'],
-        'KM': data['KM'],
-        'GRS': data['GRS'], 
-        }])
+    def predict_house(self, house:HouseForm)->float:
 
-        prediction = self.__predictor.predict(features)
+        prediction = self.__predictor.predict(house.to_dataframe())
+
+        house_data = house.to_dict()
 
         saved = self.__db.save_prediction(
-            lb=int(data["LB"]),
-            lt=int(data["LT"]),
-            kt=int(data["KT"]),
-            km=int(data["KM"]),
-            grs=int(data["GRS"]),
+            lb=int(house_data["LB"]),
+            lt=int(house_data["LT"]),
+            kt=int(house_data["KT"]),
+            km=int(house_data["KM"]),
+            grs=int(house_data["GRS"]),
             predicted_price=float(prediction)
         )
 
