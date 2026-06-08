@@ -1,14 +1,14 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Input from "../common/Input";
 import { predictionHouse } from "../../services/api";
 
 export default function HouseForm({ setPrediction }) {
   const [formData, setFormData] = useState({
-    LB: "",
-    LT: "",
-    KT: "",
-    KM: "",
-    GRS: "",
+    LB: Number(""),
+    LT: Number(""),
+    KT: Number(""),
+    KM: Number(""),
+    GRS: Number(""),
   });
 
   const inputContents = [
@@ -61,7 +61,7 @@ export default function HouseForm({ setPrediction }) {
     for (const { id, name, max, min } of dataLimit) {
       const v = Number(data[id.toUpperCase()]);
 
-      if (v > max || v < min) {
+      if (isNaN(v) || v > max || v < min) {
         alert(`field ${name} harus diisi dengan nilai valid`);
         return false;
       }
@@ -82,9 +82,10 @@ export default function HouseForm({ setPrediction }) {
     try {
       const prediction = await predictionHouse(formData);
 
-      return setPrediction(prediction);
+      setPrediction(prediction);
+      return;
     } catch (error) {
-      console.error(`error: ${error}`);
+      console.error(`error: ${error.message}`);
     }
   };
 
@@ -97,8 +98,6 @@ export default function HouseForm({ setPrediction }) {
   };
 
   const resetForm = (e) => {
-    e.preventDefault();
-
     setFormData({
       LB: "",
       LT: "",

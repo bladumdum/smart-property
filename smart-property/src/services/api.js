@@ -17,5 +17,5 @@ export async function predictionHouse(data) {
     throw new Error(result.messages);
   }
 
-  console.log(result);
+  return result.prediction;
 }

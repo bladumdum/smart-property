@@ -1,19 +1,30 @@
-export default function HistoryCard({ id }) {
+export default function HistoryCard({
+  bathroom_count,
+  bedroom_count,
+  building_size_m2,
+  garage,
+  id,
+  land_size_m2,
+  predicted_price,
+  deleteHistory,
+}) {
+  console.info(` ini price: ${predicted_price}`);
   return (
     <div className="bg-bg-card py-10 w-full rounded-sm" key={id}>
       <div className="flex justify-between items-center px-6">
         <div className="flex flex-col gap-3 max-w-sm">
           <h6 className="text-2xl font-semibold">Prediksi 1</h6>
           <div className="text-gray-400 text-sm flex flex-col gap-1">
-            <p>Luas Bangunan: 220</p>
-            <p>Luas Bangunan: 220</p>
-            <p>Luas Bangunan: 220</p>
-            <p>Luas Bangunan: 220</p>
-            <p>Luas Bangunan: 220</p>
+            <p>Luas Bangunan: {building_size_m2}</p>
+            <p>Luas Tanah: {land_size_m2}</p>
+            <p>Jumalah Kamar Tidur: {bedroom_count}</p>
+            <p>Jumalah Kamar Mandi: {bathroom_count}</p>
+            <p>Garasi: {garage}</p>
           </div>
           <hr />
           <p className=" font-semibold">
-            Harga Prediksi: <span className="text-info">3.200.000.000</span>
+            Harga Prediksi:{" "}
+            <span className="text-info">{`Rp ${Number(predicted_price).toLocaleString("id-ID")}`}</span>
           </p>
         </div>
 
@@ -25,7 +36,9 @@ export default function HistoryCard({ id }) {
             className="bg-info hover:bg-info-hover hover:text-text-primary-hover flex justify-center items-center rounded-sm h-16 px-12 py-2 text-sm font-semibold w-full">
             Edit
           </button>
-          <button className="bg-error hover:bg-error-hover hover:text-text-primary-hover flex justify-center items-center rounded-sm h-16 px-12 py-2 text-sm font-semibold w-full">
+          <button
+            onClick={deleteHistory}
+            className="bg-error hover:bg-error-hover hover:text-text-primary-hover flex justify-center items-center rounded-sm h-16 px-12 py-2 text-sm font-semibold w-full">
             Hapus
           </button>
         </div>
