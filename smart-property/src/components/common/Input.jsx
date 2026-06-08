@@ -8,7 +8,7 @@ export default function Input({
 }) {
   return (
     <>
-      <label htmlFor="" className="px-4">
+      <label htmlFor="" className="pl-4">
         {label}
       </label>
       <input
@@ -16,7 +16,7 @@ export default function Input({
         name={name}
         value={value}
         onChange={handleChange}
-        className="py-2 px-4 bg-bg-card w-full rounded-sm"
+        className="py-2 pl-4 bg-bg-card w-full rounded-sm"
         placeholder={placeholder}
         onWheel={(e) => e.target.blur()}
         required

@@ -11,10 +11,10 @@ export default function Prediction() {
           <h2 className="text-6xl font-semibold text-center">
             Prediksi Harga Rumah
           </h2>
-          <div className="mb-6">
+          <div className="flex flex-col gap-8">
             <HouseForm setPrediction={setPrediction} />
+            <PredictionCard prediction={prediction} />
           </div>
-          <PredictionCard prediction={prediction} />
         </div>
       </div>
     </div>

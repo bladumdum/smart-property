@@ -109,7 +109,7 @@ export default function HouseForm({ setPrediction }) {
   };
 
   return (
-    <div className=" py-24 w-full">
+    <div className=" pt-24 w-full">
       <form onSubmit={handleSubmit} className="w-full">
         <div className="flex flex-col gap-4 mb-8">
           {inputContents.map(({ label, type, name, value, placeholder }) => (
