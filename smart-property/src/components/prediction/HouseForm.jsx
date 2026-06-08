@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Input from "../common/Input";
 import { predictionHouse } from "../../services/api";
 
@@ -10,27 +10,6 @@ export default function HouseForm({ setPrediction }) {
     KM: "",
     GRS: "",
   });
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    console.log(formData);
-
-    try {
-      const prediction = await predictionHouse(formData);
-      return setPrediction(prediction);
-    } catch (error) {
-      console.error(`error: ${error}`);
-    }
-  };
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
 
   const inputContents = [
     {
@@ -70,6 +49,65 @@ export default function HouseForm({ setPrediction }) {
     },
   ];
 
+  const dataFormValidation = (data) => {
+    const dataLimit = [
+      { id: "lb", name: "Luas Bangunan", max: 10000, min: 1 },
+      { id: "lt", name: "Luas Tanah", max: 10000, min: 1 },
+      { id: "kt", name: "Kamar Tidur", max: 10000, min: 1 },
+      { id: "km", name: "Kamar Mandi", max: 10000, min: 0 },
+      { id: "grs", name: "Garasi", max: 10000, min: 0 },
+    ];
+
+    for (const { id, name, max, min } of dataLimit) {
+      const v = Number(data[id.toUpperCase()]);
+
+      if (v > max || v < min) {
+        alert(`field ${name} harus diisi dengan nilai valid`);
+        return false;
+      }
+    }
+
+    return true;
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const inputIsValid = dataFormValidation(formData);
+
+    if (!inputIsValid) {
+      return;
+    }
+
+    try {
+      const prediction = await predictionHouse(formData);
+
+      return setPrediction(prediction);
+    } catch (error) {
+      console.error(`error: ${error}`);
+    }
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const resetForm = (e) => {
+    e.preventDefault();
+
+    setFormData({
+      LB: "",
+      LT: "",
+      KT: "",
+      KM: "",
+      GRS: "",
+    });
+  };
+
   return (
     <div className=" pt-24 w-full">
       <form onSubmit={handleSubmit} className="w-full">
@@ -87,11 +125,18 @@ export default function HouseForm({ setPrediction }) {
             </div>
           ))}
         </div>
-        <button
-          type="submit"
-          className="bg-brand flex justify-center items-center rounded-sm w-full py-4 text-sm font-semibold">
-          Predict
-        </button>
+        <div className="flex justify-center items-center gap-4">
+          <button
+            type="submit"
+            className="bg-brand flex justify-center items-center rounded-sm w-full py-4 text-sm font-semibold">
+            Predict
+          </button>
+          <button
+            onClick={resetForm}
+            className="bg-error flex justify-center items-center rounded-sm w-full py-4 text-sm font-semibold">
+            Reset
+          </button>
+        </div>
       </form>
     </div>
   );
