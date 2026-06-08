@@ -1,5 +1,8 @@
 import { useState, useEffect } from "react";
-import { historyService } from "../../services/historyService";
+import {
+  historyService,
+  deletePrediction,
+} from "../../services/historyService";
 import HistoryCard from "./HistoryCard";
 
 export default function HistoryTable() {
@@ -21,8 +24,9 @@ export default function HistoryTable() {
     }
   };
 
-  const deleteHistory = () => {
-    alert("delete btn work");
+  const deleteHistory = (id) => {
+    try {
+    } catch (error) {}
   };
 
   useEffect(() => {
@@ -31,10 +35,6 @@ export default function HistoryTable() {
 
   return (
     <div className="flex flex-col justify-center items-center w-full py-24 gap-6">
-      {/* {ids.map((id) => (
-        <HistoryCard id={id} />
-      ))} */}
-
       {isLoading ? (
         <div className="">Loading...</div>
       ) : error ? (
@@ -43,7 +43,11 @@ export default function HistoryTable() {
         <div className="">Tidak ada riwayat prediksi</div>
       ) : (
         historyData.map((history) => (
-          <HistoryCard {...history} deleteHistory={deleteHistory} />
+          <HistoryCard
+            {...history}
+            deleteHistory={deleteHistory}
+            getId={getId}
+          />
         ))
       )}
     </div>

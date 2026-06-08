@@ -6,12 +6,22 @@ export async function historyService() {
   const result = await response.json();
 
   if (!result.success) {
-    throw new Error(result.messages);
+    throw new Error(result.message);
   }
 
   return result.history;
 }
 
-export async function deleteHistory() {
-  return;
+export async function deletePrediction(id) {
+  const response = await fetch(`${BASE_URL}/history/${id}`, {
+    method: "DELETE",
+  });
+
+  const result = await response.json();
+
+  if (!response.ok) {
+    throw new Error(result.message);
+  }
+
+  return result;
 }

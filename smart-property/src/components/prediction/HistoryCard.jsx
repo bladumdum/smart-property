@@ -8,7 +8,6 @@ export default function HistoryCard({
   predicted_price,
   deleteHistory,
 }) {
-  console.info(` ini price: ${predicted_price}`);
   return (
     <div className="bg-bg-card py-10 w-full rounded-sm" key={id}>
       <div className="flex justify-between items-center px-6">
@@ -37,7 +36,7 @@ export default function HistoryCard({
             Edit
           </button>
           <button
-            onClick={deleteHistory}
+            onClick={() => deleteHistory(id)}
             className="bg-error hover:bg-error-hover hover:text-text-primary-hover flex justify-center items-center rounded-sm h-16 px-12 py-2 text-sm font-semibold w-full">
             Hapus
           </button>
