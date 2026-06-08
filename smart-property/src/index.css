@@ -5,11 +5,14 @@
 @theme {
   /* Colors */
   --color-brand: #2563eb;
+  --color-brand-hover: #1248c0;
 
   --color-success: #10b981;
   --color-warning: #f59e0b;
   --color-error: #ef4444;
+  --color-error-hover: #ef4444;
   --color-info: #3b82f6;
+  --color-info-hover: #0b60ea;
 
   --color-grey: #707fa0;
 
@@ -18,6 +21,7 @@
   --color-bg-card: #1e293b;
 
   --color-text-primary: #f8fafc;
+  --color-text-primary-hover: #e0e0e0;
   --color-text-secondary: #cbd5e1;
   --color-text-muted: #94a3b8;
 

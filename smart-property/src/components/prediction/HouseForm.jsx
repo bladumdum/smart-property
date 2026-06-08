@@ -128,12 +128,12 @@ export default function HouseForm({ setPrediction }) {
         <div className="flex justify-center items-center gap-4">
           <button
             type="submit"
-            className="bg-brand flex justify-center items-center rounded-sm w-full py-4 text-sm font-semibold">
+            className="bg-brand hover:bg-brand-hover flex justify-center items-center rounded-sm w-full py-4 text-sm font-semibold">
             Predict
           </button>
           <button
             onClick={resetForm}
-            className="bg-error flex justify-center items-center rounded-sm w-full py-4 text-sm font-semibold">
+            className="bg-error hover:bg-error-hover flex justify-center items-center rounded-sm w-full py-4 text-sm font-semibold">
             Reset
           </button>
         </div>

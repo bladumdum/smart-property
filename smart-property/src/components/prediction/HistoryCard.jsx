@@ -22,10 +22,10 @@ export default function HistoryCard({ id }) {
             onClick={() =>
               alert("Fitur ini masih belum dibuat. backendnya bingung cik😭")
             }
-            className="bg-brand flex justify-center items-center rounded-sm h-16 px-12 py-2 text-sm font-semibold w-full">
+            className="bg-info hover:bg-info-hover hover:text-text-primary-hover flex justify-center items-center rounded-sm h-16 px-12 py-2 text-sm font-semibold w-full">
             Edit
           </button>
-          <button className="bg-error flex justify-center items-center rounded-sm h-16 px-12 py-2 text-sm font-semibold w-full">
+          <button className="bg-error hover:bg-error-hover hover:text-text-primary-hover flex justify-center items-center rounded-sm h-16 px-12 py-2 text-sm font-semibold w-full">
             Hapus
           </button>
         </div>
