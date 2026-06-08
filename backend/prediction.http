@@ -1,12 +1,12 @@
-POST http://127.0.0.1:5000/prediction/predict
-Content-Type: application/json
+# POST http://127.0.0.1:5000/prediction/predict
+# Content-Type: application/json
 
-{
-    "LB": 70,
-    "LT": 64,
-    "KT": 2,
-    "KM": 3,
-    "GRS": 2
-}
+# {
+#     "LB": 70,
+#     "LT": 64,
+#     "KT": 2,
+#     "KM": 3,
+#     "GRS": 2
+# }
 
-# GET http://127.0.0.1:5000/history
+GET http://127.0.0.1:5000/history

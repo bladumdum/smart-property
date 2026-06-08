@@ -6,7 +6,7 @@ history_bp = Blueprint('history', __name__)
 service = PredictionService()
 
 @history_bp.route('/history', methods=['GET'])
-def get_history():
+def get_prediction_history():
 
     try:
         result = service.get_history()

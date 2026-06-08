@@ -112,7 +112,7 @@ class DatabaseManager:
             connection.close()
 
     def get_prediction_history(self):
-        connection = self.__connection
+        connection = self.get_connection()
         cursor = connection.cursor(dictionary=True)
 
         try:
