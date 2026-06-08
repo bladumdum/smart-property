@@ -132,6 +132,7 @@ export default function HouseForm({ setPrediction }) {
             Predict
           </button>
           <button
+            type="button"
             onClick={resetForm}
             className="bg-error hover:bg-error-hover flex justify-center items-center rounded-sm w-full py-4 text-sm font-semibold">
             Reset
