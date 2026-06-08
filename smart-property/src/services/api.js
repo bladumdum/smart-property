@@ -18,5 +18,4 @@ export async function predictionHouse(data) {
   }
 
   console.log(result);
-  return result.prediction;
 }
