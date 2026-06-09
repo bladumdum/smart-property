@@ -4,11 +4,11 @@ import { predictionHouse } from "../../services/api";
 
 export default function HouseForm({ setPrediction }) {
   const [formData, setFormData] = useState({
-    LB: Number(""),
-    LT: Number(""),
-    KT: Number(""),
-    KM: Number(""),
-    GRS: Number(""),
+    LB: "",
+    LT: "",
+    KT: "",
+    KM: "",
+    GRS: "",
   });
 
   const inputContents = [
@@ -97,7 +97,7 @@ export default function HouseForm({ setPrediction }) {
     }));
   };
 
-  const resetForm = (e) => {
+  const resetForm = () => {
     setFormData({
       LB: "",
       LT: "",
