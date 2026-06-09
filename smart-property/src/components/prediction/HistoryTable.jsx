@@ -15,7 +15,6 @@ export default function HistoryTable() {
       const history = await historyService();
 
       setHistory(history);
-      console.log(history[0]);
     } catch (error) {
       setError(error.message);
       console.error(`error ${error.message}`);
@@ -24,9 +23,18 @@ export default function HistoryTable() {
     }
   };
 
-  const deleteHistory = (id) => {
+  const deleteHistory = async (id) => {
     try {
-    } catch (error) {}
+      const isDelete = await deletePrediction(id);
+
+      await getHistory();
+
+      // setTimeout(() => {
+      //   alert(`${isDelete.message}, deleted row: prediksi ${id}`);
+      // }, 100);
+    } catch (error) {
+      alert(error.message);
+    }
   };
 
   useEffect(() => {
@@ -46,7 +54,7 @@ export default function HistoryTable() {
           <HistoryCard
             {...history}
             deleteHistory={deleteHistory}
-            getId={getId}
+            key={history.id}
           />
         ))
       )}

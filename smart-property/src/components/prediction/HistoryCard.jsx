@@ -9,10 +9,10 @@ export default function HistoryCard({
   deleteHistory,
 }) {
   return (
-    <div className="bg-bg-card py-10 w-full rounded-sm" key={id}>
+    <div className="bg-bg-card py-10 w-full rounded-sm">
       <div className="flex justify-between items-center px-6">
         <div className="flex flex-col gap-3 max-w-sm">
-          <h6 className="text-2xl font-semibold">Prediksi 1</h6>
+          <h6 className="text-2xl font-semibold">Prediksi {id}</h6>
           <div className="text-gray-400 text-sm flex flex-col gap-1">
             <p>Luas Bangunan: {building_size_m2}</p>
             <p>Luas Tanah: {land_size_m2}</p>

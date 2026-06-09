@@ -13,6 +13,7 @@ export async function historyService() {
 }
 
 export async function deletePrediction(id) {
+  console.log(id);
   const response = await fetch(`${BASE_URL}/history/${id}`, {
     method: "DELETE",
   });
