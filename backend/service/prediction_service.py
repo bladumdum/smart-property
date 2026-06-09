@@ -41,3 +41,6 @@ class PredictionService:
             raise Exception('failed to get history')
         
         return got
+    
+    def delete_history(self, predicted_id):
+        return self.__db.delete(predicted_id)

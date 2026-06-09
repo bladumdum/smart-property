@@ -128,3 +128,16 @@ class DatabaseManager:
             connection.close()
 
         return result
+    
+    def delete(self, predicted_id): 
+        connection = self.get_connection()
+        cursor = connection.cursor()
+
+        cursor.execute(
+            "delete from prediction_history where id = %s", 
+            (predicted_id,)
+        )
+
+        connection.commit()
+
+        return cursor.rowcount

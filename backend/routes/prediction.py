@@ -33,14 +33,15 @@ def predict():
     except TypeError as e:
         return jsonify({
             'success':False,
-            'messages': str(e),
+            'message': str(e),
         }), 400
     
     except Exception as e:
         return jsonify({
             'success': False,
-            'messages': str(e),
+            'message': str(e),
         }), 500
+
     
 @prediction_bp.route("/health")
 def health():

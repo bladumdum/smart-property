@@ -10,3 +10,4 @@
 # }
 
 GET http://127.0.0.1:5000/history
+# DELETE http://127.0.0.1:5000/history/74
