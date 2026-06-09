@@ -31,7 +31,7 @@ def delete_history(id):
             return jsonify({
                 "success": False,
                 "message": "data tidak ditemukan",
-                "deleted row": deleted_row
+                "deleted_row": deleted_row
             }), 404
         
         return jsonify({
