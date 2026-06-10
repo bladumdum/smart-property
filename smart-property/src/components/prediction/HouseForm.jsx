@@ -85,6 +85,7 @@ export default function HouseForm({ setPrediction }) {
       setPrediction(prediction);
       return;
     } catch (error) {
+      alert(error.message);
       console.error(`error: ${error.message}`);
     }
   };
