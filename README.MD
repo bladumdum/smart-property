@@ -3,7 +3,7 @@
 Aplikasi prediksi harga rumah menggunakan Random Forest Regressor.
 
 ## Link Website 
-[Smart-Property](https://bladumdum.github.io/projek-akhir/)
+[Smart-Property](https://bladumdum.github.io/projek-akhir/)(frontend only)
 
 ## Teknologi
 
