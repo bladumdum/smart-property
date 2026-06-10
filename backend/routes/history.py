@@ -1,4 +1,4 @@
-from flask import Blueprint, request, jsonify
+from flask import Blueprint, jsonify
 from service.prediction_service import PredictionService
 
 history_bp = Blueprint('history', __name__)

@@ -1,6 +1,5 @@
 from models.predictor import HousePredictor
 from database.db import DatabaseManager
-import pandas as pd
 from entities.house import HouseForm
 
 class PredictionService:
